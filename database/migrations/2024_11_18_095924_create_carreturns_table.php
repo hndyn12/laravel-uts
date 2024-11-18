@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('rental_id')->constrained('rentals');
             $table->date('return_date');
-            $table->integer('total_unit_kembali');
             $table->decimal('fine', 10, 2);
             $table->string('car_condition');
             $table->timestamps();

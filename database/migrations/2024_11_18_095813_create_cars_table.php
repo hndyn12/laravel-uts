@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('license_plate');
             $table->decimal('rate', 10, 2);
-            $table->integer('availability');
+            $table->boolean('availability')->default(true);
             $table->timestamps();
         });
     }

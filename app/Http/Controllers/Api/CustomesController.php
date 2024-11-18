@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Customer;
 
-class RentalController extends Controller
+class CustomesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Rental::get();
+        $data = Customer::get();
 
         return response()->json(['data' => $data], 200);
     }
@@ -31,14 +31,14 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Rental::rules('insert'));
-        Rental::customValidation($validator);
+        $validator = Validator::make($request->all(), Customer::rules('insert'));
+        Customer::customValidation($validator);
 
         if ($validator->fails()) {
             return response()->json(['message' => $validator->messages()], 400);
         }
         try {
-            $data = Rental::create($request->all());
+            $data = Customer::create($request->all());
 
             return response()->json(['message' => 'Data berhasil disimpan', 'data' => $data], 200);
         } catch (\Throwable $e) {
@@ -52,7 +52,7 @@ class RentalController extends Controller
     public function show(string $id)
     {
         try {
-            $data = Rental::find($id);
+            $data = Customer::find($id);
 
             return response()->json(['data' => $data], 200);
         } catch (\Throwable $e) {
@@ -66,7 +66,7 @@ class RentalController extends Controller
     public function edit(string $id)
     {
         try {
-            $data = Rental::find($id);
+            $data = Customer::find($id);
 
             return response()->json(['data' => $data], 200);
         } catch (\Throwable $e) {
@@ -79,15 +79,15 @@ class RentalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->all(), Rental::rules('update'));
-        Rental::customValidation($validator);
+        $validator = Validator::make($request->all(), Customer::rules('update'));
+        Customer::customValidation($validator);
 
         if ($validator->fails()) {
             return response()->json(['message' => $validator->messages()], 400);
         }
 
         try {
-            $data = Rental::find($id);
+            $data = Customer::find($id);
             $data->update($request->all());
 
             return response()->json(['message' => 'Data berhasil diupdate', 'data' => null]);
@@ -102,7 +102,7 @@ class RentalController extends Controller
     public function destroy(string $id)
     {
         try {
-            $data = Rental::find($id);
+            $data = Customer::find($id);
             $data->delete();
 
             return response()->json(['message' => 'Data berhasil dihapus'], 200);
