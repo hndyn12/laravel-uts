@@ -90,7 +90,7 @@ class RentalController extends Controller
             $data = Rental::find($id);
             $data->update($request->all());
 
-            return response()->json(['message' => 'Data berhasil diupdate', 'data' => null]);
+            return response()->json(['message' => 'Data berhasil diupdate', 'data' => $data]);
         } catch (\Throwable $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }

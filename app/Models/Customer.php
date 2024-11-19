@@ -22,6 +22,27 @@ class Customer extends Model
     }
 
     /**
+     * Aturan validasi untuk model ini.
+     *
+     * @return array
+     */
+    public static function rules($process)
+    {
+        if ($process == 'insert') {
+            return [
+                'name' => 'required|string|max:225',
+                'phone' => 'required|string|max:225',
+                'address' => 'required|string|max:225',
+            ];
+        } elseif ($process == 'update') {
+            return [
+                'name' => 'required|string|max:225',
+                'phone' => 'required|string|max:225',
+                'address' => 'required|string|max:225',
+            ];
+        }
+    }
+    /**
      * Mendaftarkan aturan validasi kustom.
      *
      * @param  \Illuminate\Validation\Validator  $validator
@@ -31,7 +52,7 @@ class Customer extends Model
     {
         $customAttributes = [
             'name' => 'Nama',
-            'phone' => 'Nomor Telepon',
+            'phone' => 'NomorTelepon',
             'address' => 'Alamat'
         ];
 

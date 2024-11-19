@@ -23,6 +23,31 @@ class Carreturn extends Model
     }
 
     /**
+     * Aturan validasi untuk model ini.
+     *
+     * @return array
+     */
+    public static function rules($process)
+    {
+        if ($process == 'insert') {
+            return [
+                'rental_id' => 'required|numeric',
+                'return_date' => 'required|date',
+                'fine' => 'required|numeric',
+                'car_condition' => 'required|string'
+            ];
+        } elseif ($process == 'update') {
+            return [
+                'rental_id' => 'required|numeric',
+                'return_date' => 'required|date',
+                'fine' => 'required|numeric',
+                'car_condition' => 'required|string'
+            ];
+        }
+    }
+
+
+    /**
      * Mendaftarkan aturan validasi kustom.
      *
      * @param  \Illuminate\Validation\Validator  $validator

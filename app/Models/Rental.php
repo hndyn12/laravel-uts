@@ -33,6 +33,35 @@ class Rental extends Model
     }
 
     /**
+     * Aturan validasi untuk model ini.
+     *
+     * @return array
+     */
+    public static function rules($process)
+    {
+        if ($process == 'insert') {
+            return [
+                'car_id' => 'required|numeric',
+                'customer_id' => 'required|numeric',
+                'rent_date' => 'required|date',
+                'return_date' => 'required|date',
+                'total_cost' => 'required|numeric',
+                'payment_status' => 'required|in:pending,paid'
+            ];
+        } elseif ($process == 'update') {
+            return [
+                'car_id' => 'required|numeric',
+                'customer_id' => 'required|numeric',
+                'rent_date' => 'required|date',
+                'return_date' => 'required|date',
+                'total_cost' => 'required|numeric',
+                'payment_status' => 'required|in:pending,paid'
+            ];
+        }
+    }
+
+
+    /**
      * Mendaftarkan aturan validasi kustom.
      *
      * @param  \Illuminate\Validation\Validator  $validator

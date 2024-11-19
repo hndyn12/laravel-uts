@@ -17,7 +17,7 @@ Route::prefix('v1')->group(function () {
 
     Route::resource('carreturn', CarreturnController::class);
 
-    Route::get('/uts', function () {
+    Route::get('/test', function () {
         return view('welcome');
     });
 });

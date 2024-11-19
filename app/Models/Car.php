@@ -32,11 +32,17 @@ class Car extends Model
     {
         if ($process == 'insert') {
             return [
-                'category_name' => 'required|string|max:225',
+                'brand' => 'required|string|max:225',
+                'model' => 'required|string|max:225',
+                'license_plate' => 'required|string|max:225',
+                'rate' => 'required|numeric',
             ];
         } elseif ($process == 'update') {
             return [
-                'category_name' => 'required|string|max:225',
+                'brand' => 'required|string|max:225',
+                'model' => 'required|string|max:225',
+                'license_plate' => 'required|string|max:225',
+                'rate' => 'required|numeric',
             ];
         }
     }
@@ -52,7 +58,7 @@ class Car extends Model
         $customAttributes = [
             'brand' => 'Brand Mobil',
             'model' => 'Model Mobil',
-            'lisense_plate' => 'Plat Mobil',
+            'license_plate' => 'Plat Mobil',
         ];
         $validator->addReplacer('required', function ($message, $attribute, $rule, $parameters) use ($customAttributes) {
             return str_replace(':attribute', $customAttributes[$attribute], ':attribute harus diisi.');
